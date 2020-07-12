@@ -29,20 +29,20 @@ const questions = [
     },
     {  
         type: "list",
-        message: "Have you used any licence ?",
-        name: "licence",
+        message: "Have you used any license ?",
+        name: "license",
         choices: ["MIT", "IBM"]
     },
 
     {
         type: "input",
-        messages: "Please name a contubotor of this file",
-        name: "contributing"
+        message: "Please name a contributor of this file",
+        name: "Contributing"
     },
     {  
         type: "input",
-        message: "Questions",
-        name: "Questions"
+        message: "Please type your questions",
+        name: "question"
         
     },
     {  
@@ -64,7 +64,7 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileReadme) {
-    fs.writeFile("./NEW_README.md", fileReadme, function (err) {
+    fs.writeFile("./README.md", fileReadme, function (err) {
         if (err) throw err;
         console.log('Your file have been successfully created!');
     })};
@@ -73,16 +73,15 @@ function writeToFile(fileReadme) {
 function init() {
     const response = inquirer
     .prompt(questions)
-    .then(function(response) { 
-      // created an object to save all user responses
+    .then(function(response) {
       const data ={}
       data.title = response.title;
       data.description = response.description;
       data.installation = response.installation;
       data.usage = response.usage;
       data.license = response.license;
-      data.contributors = response.contributing;
-      data.questions = response.questions;
+      data.contributing = response.contributing;
+      data.question = response.question;
       data.email = response.email;
       data.github = response.github;
       const fileReadme = generateMarkdown(data);
